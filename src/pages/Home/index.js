@@ -13,7 +13,17 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {last} = useData()
+  // ajout fonction de tri
+  const { data } = useData();
+  const dataSortedByDate =
+    data?.events.sort((a, b) => new Date(b.date) - new Date(a.date)) || [];
+  // on récupère le dernier si la data est vide on met un object par defaut
+  const eventDefault = {
+    cover: "",
+    title: "",
+    date: new Date(),
+  };
+  const last = data ? dataSortedByDate[0] : eventDefault;
   return <>
     <header>
       <Menu />
@@ -117,8 +127,8 @@ const Page = () => {
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
         <EventCard
-          imageSrc={last?.cover}
-          title={last?.title}
+          imageSrc={last.cover}
+          title={last.title}
           date={new Date(last?.date)}
           small
           label="boom"
