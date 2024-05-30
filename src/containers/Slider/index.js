@@ -24,18 +24,18 @@ const Slider = () => {
   // Exécuter la fonction nextCard à chaque changement d'index
   useEffect(() => {
     nextCard();
-  }, [index]);
+  });
 
   return (
     <div className="SlideCardList">
-      {byDateDesc?.map((event, idx) => (
+      {byDateDesc?.map((ev²ent, idx) => (
         // Utiliser event.id comme clé unique pour chaque SlideCard
-        <div key={event.id} className={`SlideCard SlideCard--${index === idx ? "display" : "hide"}`}>
-          <img src={event.cover} alt="forum" />
+        <div key={events.id} className={`SlideCard SlideCard--${index === idx ? "display" : "hide"}`}>
+          <img src={events.cover} alt="forum" />
           <div className="SlideCard__descriptionContainer">
             <div className="SlideCard__description">
-              <h3>{event.title}</h3>
-              <p>{event.description}</p>
+              <h3>{events.title}</h3>
+              <p>{events.description}</p>
               <div>{getMonth(new Date(event.date))}</div>
             </div>
           </div>
