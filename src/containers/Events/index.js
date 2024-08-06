@@ -19,7 +19,7 @@ const EventList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   // Gestion des erreurs
-  if (error) return <div>Une erreur s'est produite</div>;
+  if (error) return <div>Une erreur s&apos;est produite</div>;
   // Affichage du chargement en attendant les données
   if (!data) return "chargement";
 
