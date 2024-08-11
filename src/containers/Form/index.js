@@ -4,27 +4,32 @@ import Field, { FIELD_TYPES } from "../../components/Field";
 import Select from "../../components/Select";
 import Button, { BUTTON_TYPES } from "../../components/Button";
 
+// Fonction simulant un appel à une API de contact avec un délai de 700 ms
 const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 700); })
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
+
+  // Fonction pour gérer l'envoi du formulaire
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
       setSending(true);
-      // We try to call mockContactApi
+      // On essaye d'appeler la fonction mockContactApi
       try {
         await mockContactApi();
         setSending(false);
-        // on appel la function onSuccess
-        onSuccess()
+        // On appelle la fonction onSuccess en cas de succès
+        onSuccess();
       } catch (err) {
         setSending(false);
+        // On appelle la fonction onError en cas d'erreur
         onError(err);
       }
     },
     [onSuccess, onError]
   );
+
   return (
     <form onSubmit={sendContact}>
       <div className="row">
